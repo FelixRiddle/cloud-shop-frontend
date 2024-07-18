@@ -20,9 +20,9 @@ function App() {
 				
 				<main className="caja-contenido col-9">
 					<Routes>
-						<Route exact path="/" component={Client} />
-						<Route exact path="/products" component={Product} />
-						<Route exact path="/invoices" component={Invoice} />
+						<Route exact path="/" element={<Client />} />
+						<Route exact path="/products" element={<Product />} />
+						<Route exact path="/invoices" element={<Invoice />} />
 					</Routes>
 				</main>
 			</div>

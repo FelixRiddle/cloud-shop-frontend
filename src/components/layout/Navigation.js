@@ -15,10 +15,10 @@ export default function Navigation() {
 				<Link href="/" className="clientes">
 					Clients
 				</Link>
-				<Link href="/product" className="productos">
+				<Link href="/products" className="productos">
 					Products
 				</Link>
-				<Link href="/invoice" className="pedidos">
+				<Link href="/invoices" className="pedidos">
 					Invoices
 				</Link>
 			</nav>
