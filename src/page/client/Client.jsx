@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /**
  * Client
  */
@@ -13,10 +15,10 @@ export default function Client({
 				<p>Phone: {client.phoneNumber}</p>
 			</div>
 			<div className="acciones">
-				<a href="#" className="btn btn-azul">
+				<Link to={`/client/edit/${client._id}`} className="btn btn-azul">
 					<i className="fas fas-pen-alt"></i>
 					Edit client
-				</a>
+				</Link>
 				<button className="btn btn-rojo btn-eliminar">
 					<i className="fas fa-times"></i>
 					Delete client

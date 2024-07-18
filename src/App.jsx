@@ -7,6 +7,7 @@ import Product from "./page/Product";
 import Invoice from "./page/Invoice";
 import ClientPage from "./page/client/page";
 import CreateClientPage from "./page/client/create/page";
+import EditClient from "./page/client/edit/page";
 
 /**
  * App
@@ -24,6 +25,12 @@ function App() {
 						<Route exact path="/" element={<ClientPage />} />
 						<Route exact path="/client" element={<ClientPage />} />
 						<Route exact path="/client/create" element={<CreateClientPage />} />
+						<Route
+							exact
+							path="/client/edit/:id"
+							element={<EditClient />}
+						/>
+						
 						<Route exact path="/products" element={<Product />} />
 						<Route exact path="/invoices" element={<Invoice />} />
 					</Routes>
