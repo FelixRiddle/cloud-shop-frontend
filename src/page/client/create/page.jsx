@@ -3,8 +3,12 @@
  */
 export default function CreateClientPage() {
 	return (
-		<div>
+		<>
+			<h2>New client</h2>
 			
-		</div>
+			<form action="/client" method="POST">
+				
+			</form>
+		</>
 	);
 }

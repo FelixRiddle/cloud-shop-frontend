@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosClient from '../../config/axios';
 import Client from './Client';
+import { Link } from 'react-router-dom';
 
 /**
  * Client page
@@ -24,7 +25,7 @@ export default function ClientPage() {
 	}, []);
 	
 	return (
-		<div>
+		<>
 			<h2>Client</h2>
 			
 			<Link
@@ -42,6 +43,6 @@ export default function ClientPage() {
 					);
 				})}
 			</ul>
-		</div>
+		</>
 	);
 }
