@@ -20,24 +20,22 @@ export default function EditClient() {
 	
 	async function fetchClient() {
 		const id = params.id;
-		console.log(`Client id: `, id);
 		await getClient(id)
 			.then((res) => {
-				const data = res.data;
-				const clientData = data.client;
-				console.log(`Client data: `, clientData);
+				const clientData = res.client;
 				setClient(clientData);
+				return res;
 			})
 			.catch((err) => {
-				if(err.data) {
-					const messages = err.data.messages;
-					withReactContent(Swal).fire({
-						icon: "error",
-						title: "Error",
-						text: messages[0].message,
-						footer: '<a href="/help/error">Why do I have this issue?</a>'		  
-					});
-				}
+				const messages = err.messages;
+				withReactContent(Swal).fire({
+					icon: "error",
+					title: "Error",
+					text: messages[0].message,
+					footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+				});
+				
+				return err;
 			});
 	}
 	
@@ -93,10 +91,10 @@ export default function EditClient() {
 	
 	return (
 		<>
-			<h2>New client</h2>
+			<h2>Edit client</h2>
 			
 			<form ref={form}>
-				<legend>Fill fields and submit to create a client</legend>
+				<legend>Edit client {client.name}</legend>
 				
 				<div className="campo">
 					<label htmlFor="name">Name</label>
@@ -106,6 +104,7 @@ export default function EditClient() {
 						id="name"
 						placeholder="Name"
 						onChange={handleChange}
+						value={client.name}
 					/>
 				</div>
 				
@@ -117,6 +116,7 @@ export default function EditClient() {
 						id="surname"
 						placeholder="Surname"
 						onChange={handleChange}
+						value={client.surname}
 					/>
 				</div>
 				
@@ -128,6 +128,7 @@ export default function EditClient() {
 						id="company"
 						placeholder="Company"
 						onChange={handleChange}
+						value={client.company}
 					/>
 				</div>
 				
@@ -139,6 +140,7 @@ export default function EditClient() {
 						id="email"
 						placeholder="Email"
 						onChange={handleChange}
+						value={client.email}
 					/>
 				</div>
 				
@@ -150,6 +152,7 @@ export default function EditClient() {
 						id="phoneNumber"
 						placeholder="Phone number"
 						onChange={handleChange}
+						value={client.phoneNumber}
 					/>
 				</div>
 				
@@ -158,7 +161,7 @@ export default function EditClient() {
 						className="btn btn-azul"
 						disabled={!validateClient()}
 						onClick={handleCreateClient}
-					>Create client</button>
+					>Save changes</button>
 				</div>
 			</form>
 		</>
