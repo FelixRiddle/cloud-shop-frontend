@@ -27,6 +27,14 @@ export default function ClientPage() {
 		<div>
 			<h2>Client</h2>
 			
+			<Link
+				to="/client/create"
+				className="btn btn-verde nvo-cliente"
+			>
+				<i className="fas fa-plus-circle"></i>
+				New client
+			</Link>
+			
 			<ul className="listado-clientes">
 				{clients.map((client) => {
 					return (
