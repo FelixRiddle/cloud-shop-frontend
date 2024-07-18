@@ -12,13 +12,13 @@ export default function Navigation() {
 			<h2>Administration</h2>
 			
 			<nav className="navegacion">
-				<Link href="/" className="clientes">
+				<Link to="/" className="clientes">
 					Clients
 				</Link>
-				<Link href="/products" className="productos">
+				<Link to="/products" className="productos">
 					Products
 				</Link>
-				<Link href="/invoices" className="pedidos">
+				<Link to="/invoices" className="pedidos">
 					Invoices
 				</Link>
 			</nav>

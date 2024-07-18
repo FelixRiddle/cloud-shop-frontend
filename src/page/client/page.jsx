@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axiosClient from '../../config/axios';
 import Client from './Client';
 import { Link } from 'react-router-dom';
+import { getClients } from '../../lib/requestTypes';
 
 /**
  * Client page
@@ -10,14 +10,10 @@ export default function ClientPage() {
 	const [clients, setClients] = useState([]);
 	
 	const updateClients = async () => {
-		await axiosClient.get("/client")
-			.then((res) => {
-				const responseData = res.data;
-				setClients(responseData.clients);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
+		const data = await getClients();
+		if(data && data.clients) {
+			setClients(data.clients);
+		}
 	}
 	
 	useEffect(() => {
