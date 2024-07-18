@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from "react-router-dom";
+
 /**
  * Navigation
  */
@@ -10,15 +12,15 @@ export default function Navigation() {
 			<h2>Administration</h2>
 			
 			<nav className="navegacion">
-				<a href="/" className="clientes">
+				<Link href="/" className="clientes">
 					Clients
-				</a>
-				<a href="/product" className="productos">
+				</Link>
+				<Link href="/product" className="productos">
 					Products
-				</a>
-				<a href="/invoice" className="pedidos">
+				</Link>
+				<Link href="/invoice" className="pedidos">
 					Invoices
-				</a>
+				</Link>
 			</nav>
 		</aside>
 	);
