@@ -7,9 +7,9 @@ import axiosClient from "../config/axios";
  */
 export default async function postRequest(endpoint, formData) {
 	try {
-		const instance = axiosClient();
+		const client = axiosClient();
 		
-		const response = await instance.post(endpoint, formData);
+		const response = await client.post(endpoint, formData);
 		
 		const data = response.data;
 		

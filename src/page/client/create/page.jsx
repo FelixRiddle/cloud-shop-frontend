@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import { createClient } from "../../../lib/requestTypes";
+import { requestWasSuccessful } from "../../../lib/status";
 
 /**
  * Create client form
@@ -39,8 +41,16 @@ export default function CreateClientPage() {
 	/**
 	 * Create client
 	 */
-	function handleCreateClient(e) {
+	async function handleCreateClient(e) {
+		e.preventDefault();
 		
+		// Just gonna post the form data
+		const data = await createClient(new FormData(form.current));
+		
+		const success = requestWasSuccessful(data);
+		if(success) {
+			window.location.href = "/client";
+		}
 	}
 	
 	return (
