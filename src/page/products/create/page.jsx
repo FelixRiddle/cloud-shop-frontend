@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { createProduct } from "../../../lib/requestTypes";
+
 import { requestWasSuccessful } from "../../../lib/status";
+import { createProduct } from "../../../lib/requestTypes";
 
 /**
  * Create product page
@@ -13,9 +14,13 @@ export default function CreateProduct() {
 		price: 0,
 	});
 	
+	/**
+	 * Handle create product
+	 */
 	async function handleCreateProduct(e) {
+		e.preventDefault();
+		
 		const response = await createProduct(new FormData(form.current));
-		console.log(`Create response: `, response);
 		
 		if(!response) {
 			return;
@@ -23,8 +28,18 @@ export default function CreateProduct() {
 		
 		const successful = requestWasSuccessful(response);
 		if(successful) {
-			window.location.href = "/product";
+			window.location.href = "/products";
 		}
+	}
+	
+	/**
+	 * Update product data
+	 */
+	async function onProductChange(e) {
+		setProduct({
+			...product,
+			[e.target.name]: e.target.value
+		});
 	}
 	
 	return (
