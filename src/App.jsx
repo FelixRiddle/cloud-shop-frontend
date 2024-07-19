@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
-import Product from "./page/Product";
-import Invoice from "./page/Invoice";
 import ClientPage from "./page/client/page";
 import CreateClientPage from "./page/client/create/page";
 import EditClient from "./page/client/edit/page";
+import ProductPage from "./page/product/page";
+import InvoicePage from "./page/invoice/page";
 
 /**
  * App
@@ -31,8 +31,8 @@ function App() {
 							element={<EditClient />}
 						/>
 						
-						<Route exact path="/products" element={<Product />} />
-						<Route exact path="/invoices" element={<Invoice />} />
+						<Route exact path="/products" element={<ProductPage />} />
+						<Route exact path="/invoices" element={<InvoicePage />} />
 					</Routes>
 				</main>
 			</div>
