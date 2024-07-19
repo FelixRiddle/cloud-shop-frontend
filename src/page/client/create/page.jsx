@@ -12,6 +12,7 @@ export default function CreateClientPage() {
 	const [client, setClient] = useState({
 		name: "",
 		surname: "",
+		email: "",
 		company: "",
 		phoneNumber: "",
 	});

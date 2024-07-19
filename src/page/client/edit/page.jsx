@@ -1,9 +1,11 @@
+import _ from "lodash";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
-import { getClient } from "../../../lib/requestTypes";
+import { getClient, updateClient } from "../../../lib/requestTypes";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { requestWasSuccessful } from "../../../lib/status";
 
 /**
  * Edit client
@@ -23,7 +25,11 @@ export default function EditClient() {
 		await getClient(id)
 			.then((res) => {
 				const clientData = res.client;
-				setClient(clientData);
+				
+				setClient(_.pick(clientData, [
+					"name", "surname", "email", "company", "phoneNumber",
+				]));
+				
 				return res;
 			})
 			.catch((err) => {
@@ -73,20 +79,21 @@ export default function EditClient() {
 	async function handleCreateClient(e) {
 		e.preventDefault();
 		
-		// // Just gonna post the form data
-		// const data = await createClient(new FormData(form.current));
+		// Just gonna post the form data
+		const data = await updateClient(new FormData(form.current), params.id);
 		
-		// const success = requestWasSuccessful(data);
-		// if(success) {
-		// 	window.location.href = "/client";
-		// } else {
-		// 	const messages = data.messages;
-		// 	withReactContent(Swal).fire({  icon: "error",
-		// 		title: "Error",
-		// 		text: messages[0].message,
-		// 		footer: '<a href="/help/error">Why do I have this issue?</a>'		  
-		// 	});
-		// }
+		const success = requestWasSuccessful(data);
+		if(success) {
+			window.location.href = "/client";
+		} else {
+			const messages = data.messages;
+			withReactContent(Swal).fire({
+				icon: "error",
+				title: "Error",
+				text: messages[0].message,
+				footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+			});
+		}
 	}
 	
 	return (
