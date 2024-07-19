@@ -11,3 +11,4 @@ export const deleteClient = (id) => deleteRequest(`/client/${id}`);
 // Weird, it doesn't work when using '/product', but client route has the same configuration
 // in the server yet it works.
 export const getProducts = () => getRequest("/product/");
+export const deleteProduct = (id) => deleteRequest(`/product/${id}`);

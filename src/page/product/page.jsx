@@ -16,7 +16,12 @@ export default function ProductPage() {
 	 */
 	async function fetchProducts() {
 		const res = await getProducts();
-		if(res && res.products) {
+		
+		if(!res) {
+			return;
+		}
+		
+		if(res.products) {
 			setProducts(res.products);
 		} else {
 			// Show error message
@@ -32,7 +37,7 @@ export default function ProductPage() {
 	
 	useEffect(() => {
 		fetchProducts();
-	}, []);
+	}, [products]);
 	
 	return (
 		<>
@@ -46,10 +51,13 @@ export default function ProductPage() {
 				New product
 			</Link>
 			
+			<p>{products.length} products</p>
+			
 			<ul className="listado-productos">
 				{products.map((product) => {
 					return (
 						<Product
+							key={product._id}
 							product={product}
 						/>
 					);
