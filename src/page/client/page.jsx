@@ -18,7 +18,7 @@ export default function ClientPage() {
 	
 	useEffect(() => {
 		updateClients();
-	}, []);
+	}, [clients]);
 	
 	return (
 		<>

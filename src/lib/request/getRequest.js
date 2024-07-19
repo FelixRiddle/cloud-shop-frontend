@@ -20,7 +20,7 @@ export default async function getRequest(endpoint) {
 			return data;
 		}
 		
-		console.error(err);
+		// console.error(err);
 		
 		return undefined;
 	}
