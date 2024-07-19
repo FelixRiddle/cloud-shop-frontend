@@ -16,23 +16,27 @@ export default function ProductPage() {
 	 * Fetch products
 	 */
 	async function fetchProducts() {
-		const res = await getProducts();
-		
-		if(!res) {
-			return;
-		}
-		
-		if(res.products) {
-			setProducts(res.products);
-		} else {
-			// Show error message
-			const messages = res.messages;
-			withReactContent(Swal).fire({
-				icon: "error",
-				title: "Error",
-				text: messages[0].message,
-				footer: '<a href="/help/error">Why do I have this issue?</a>'		  
-			});
+		try {
+			const res = await getProducts();
+			
+			if(!res) {
+				return;
+			}
+			
+			if(res.products) {
+				setProducts(res.products);
+			} else {
+				// Show error message
+				const messages = res.messages;
+				withReactContent(Swal).fire({
+					icon: "error",
+					title: "Error",
+					text: messages[0].message,
+					footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+				});
+			}
+		} catch(err) {
+			
 		}
 	}
 	
@@ -51,7 +55,7 @@ export default function ProductPage() {
 			<h2>Product</h2>
 			
 			<Link
-				to="product/create"
+				to="/products/create"
 				className="btn btn-verde nvo-cliente"
 			>
 				<i className="fas fa-plus-circle"></i>

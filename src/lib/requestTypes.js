@@ -12,3 +12,4 @@ export const deleteClient = (id) => deleteRequest(`/client/${id}`);
 // in the server yet it works.
 export const getProducts = () => getRequest("/product/");
 export const deleteProduct = (id) => deleteRequest(`/product/${id}`);
+export const createProduct = (data) => postRequest("/product", data);
