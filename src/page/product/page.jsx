@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getProducts } from '../../lib/requestTypes';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
+import Product from './Product';
 
 /**
  * Product page
@@ -16,7 +17,7 @@ export default function ProductPage() {
 	async function fetchProducts() {
 		const res = await getProducts();
 		if(res && res.products) {
-			setProducts(products);
+			setProducts(res.products);
 		} else {
 			// Show error message
 			const messages = res.messages;
@@ -46,23 +47,13 @@ export default function ProductPage() {
 			</Link>
 			
 			<ul className="listado-productos">
-				<li className="producto">
-					<div className="info-producto">
-						<p className="name">VueJS</p>
-						<p className="precio">$25.99</p>
-						<img src="img/1.jpg" alt="VueJS T-Shirt" />
-					</div>
-					<div className="acciones">
-						<a href="" className="btn btn-azul">
-							<i className="fas fa-pen-alt"></i>
-							Edit product
-						</a>
-						<button className="btn btn-rojo btn-eliminar">
-							<i className="fas fa-times"></i>
-							Delete product
-						</button>
-					</div>
-				</li>
+				{products.map((product) => {
+					return (
+						<Product
+							product={product}
+						/>
+					);
+				})}
 			</ul>
 		</>
 	);
