@@ -4,6 +4,7 @@ import { getProducts } from '../../lib/requestTypes';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import Product from './Product';
+import Spinner from '../../components/layout/Spinner';
 
 /**
  * Product page
@@ -38,6 +39,12 @@ export default function ProductPage() {
 	useEffect(() => {
 		fetchProducts();
 	}, [products]);
+	
+	if(!(products.length > 0)) {
+		return (
+			<Spinner />
+		);
+	}
 	
 	return (
 		<>

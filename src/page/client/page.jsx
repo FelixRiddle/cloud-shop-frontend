@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Client from './Client';
 import { Link } from 'react-router-dom';
 import { getClients } from '../../lib/requestTypes';
+import Spinner from '../../components/layout/Spinner';
 
 /**
  * Client page
@@ -19,6 +20,12 @@ export default function ClientPage() {
 	useEffect(() => {
 		updateClients();
 	}, [clients]);
+	
+	if(!(clients.length > 0)) {
+		return (
+			<Spinner />
+		);
+	}
 	
 	return (
 		<>
