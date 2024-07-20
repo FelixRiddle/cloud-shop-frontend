@@ -17,4 +17,4 @@ export const deleteProduct = (id) => deleteRequest(`/product/${id}`);
 export const createProduct = (data) => multipartPostRequest("/product/", data);
 export const getProduct = (id) => getRequest(`/product/${id}/`);
 export const putProduct = (data, id) => multipartPutRequest(`/product/${id}`, data);
-// export const getInvoice = (id) => getRequest(`/invoice`)
+export const getInvoice = (id) => getRequest(`/invoice/${id}`);
