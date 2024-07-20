@@ -19,7 +19,6 @@ export default function SearchProduct({
 		e.preventDefault();
 		
 		const response = await searchProduct(name);
-		
 		if(!response) {
 			withReactContent(Swal).fire({
 				icon: "error",
@@ -45,6 +44,16 @@ export default function SearchProduct({
 			});
 			
 			return;
+		}
+		
+		// Take first and append
+		const product = products[0];
+		if(product) {
+			// Append first product
+			appendProduct({
+				...product,
+				quantity: 0,
+			});
 		}
 	}
 	

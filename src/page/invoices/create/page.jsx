@@ -80,9 +80,16 @@ export default function CreateInvoicePage() {
 			<form>
 				{/* Products */}
 				<ul className="resumen">
-					<li>
-						<ProductView />
-					</li>
+					{products.map((product) => {
+						return (
+							<li>
+								<ProductView
+									key={product.product}
+									product={product}
+								/>
+							</li>
+						);
+					})}
 				</ul>
 				
 				<div className="campo">
