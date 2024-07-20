@@ -8,6 +8,7 @@ import EditClient from "./page/client/edit/page";
 import ProductPage from "./page/products/page";
 import InvoicePage from "./page/invoice/page";
 import CreateProduct from "./page/products/create/page";
+import EditProductPage from "./page/products/edit/page";
 
 /**
  * App
@@ -36,6 +37,11 @@ function App() {
 							exact
 							path="/products/create"
 							element={<CreateProduct />}
+						/>
+						<Route
+							exact
+							path="/products/edit/:id"
+							element={<EditProductPage />}
 						/>
 						
 						<Route exact path="/invoices" element={<InvoicePage />} />

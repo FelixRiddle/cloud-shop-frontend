@@ -1,6 +1,7 @@
 import deleteRequest from "./request/deleteRequest";
 import getRequest from "./request/getRequest";
 import multipartPostRequest from "./request/multipartPostRequest";
+import multipartPutRequest from "./request/multipartPutRequest";
 import postRequest from "./request/postRequest";
 import putRequest from "./request/putRequest";
 
@@ -14,3 +15,5 @@ export const deleteClient = (id) => deleteRequest(`/client/${id}`);
 export const getProducts = () => getRequest("/product/");
 export const deleteProduct = (id) => deleteRequest(`/product/${id}`);
 export const createProduct = (data) => multipartPostRequest("/product/", data);
+export const getProduct = (id) => getRequest(`/product/${id}/`);
+export const putProduct = (data, id) => multipartPutRequest(`/product/${id}`, data);

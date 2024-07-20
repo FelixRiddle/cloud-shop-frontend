@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { productImage } from "../../lib/crm/product";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+
 import { deleteProduct } from "../../lib/requestTypes";
+import ProductImage from "../../components/product/ProductImage";
 
 /**
  * Product
@@ -39,13 +40,12 @@ export default function Product({
 			<div className="info-producto">
 				<p className="name">{product.name}</p>
 				<p className="precio">$ {product.price}</p>
-				<img
-					src={product.image ? productImage(product) : ""}
-					alt={`${product.name} image`}
+				<ProductImage
+					product={product}
 				/>
 			</div>
 			<div className="acciones">
-				<Link to="/product/edit" className="btn btn-azul">
+				<Link to={`/products/edit/${product._id}`} className="btn btn-azul">
 					<i className="fas fa-pen-alt"></i>
 					Edit product
 				</Link>
