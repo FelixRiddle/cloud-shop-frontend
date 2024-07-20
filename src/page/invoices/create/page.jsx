@@ -14,6 +14,21 @@ export default function CreateInvoicePage() {
 	const params = useParams();
 	const [client, setClient] = useState({});
 	const [products, setProducts] = useState([]);
+	const [total, setTotal] = useState(0);
+	
+	/**
+	 * Update total price
+	 */
+	function updateTotal() {
+		setTotal(0);
+		products.map((product) => {
+			setTotal(total + (product.price * product.quantity));
+		});
+	}
+	
+	useEffect(() => {
+		updateTotal();
+	}, [products]);
 	
 	/**
 	 * Append product
@@ -110,42 +125,31 @@ export default function CreateInvoicePage() {
 				appendProduct={appendProduct}
 			/>
 			
-			<form>
-				{/* Products */}
-				<ul className="resumen">
-					{products.map((product) => {
-						return (
-							<li>
-								<ProductView
-									key={product.product}
-									product={product}
-									subtractQuantity={subtractQuantity}
-									addQuantity={addQuantity}
-								/>
-							</li>
-						);
-					})}
-				</ul>
-				
-				<div className="campo">
-					<label htmlFor="total">Total</label>
-					<input
-						type="text"
-						name="total"
-						id="total"
-						placholder="Price"
-						readOnly={true}
-					/>
-				</div>
-				
-				<div className="enviar">
-					<input
-						type="submit"
-						className="btn btn-azul"
-						value="Create product"
-					/>
-				</div>
-			</form>
+			{/* Products */}
+			<ul className="resumen">
+				{products.map((product) => {
+					return (
+						<li>
+							<ProductView
+								key={product.product}
+								product={product}
+								subtractQuantity={subtractQuantity}
+								addQuantity={addQuantity}
+							/>
+						</li>
+					);
+				})}
+			</ul>
+			
+			<p className="total">Total price <span>${total}</span></p>
+			
+			<div className="enviar">
+				<input
+					type="submit"
+					className="btn btn-azul"
+					value="Create product"
+				/>
+			</div>
 		</>
 	);
 }

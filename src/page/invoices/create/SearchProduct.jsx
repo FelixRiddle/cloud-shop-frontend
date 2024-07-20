@@ -52,7 +52,7 @@ export default function SearchProduct({
 			// Append first product
 			appendProduct({
 				...product,
-				quantity: 0,
+				quantity: 1,
 			});
 		}
 	}
@@ -69,7 +69,7 @@ export default function SearchProduct({
 					name="products"
 					id="products"
 					placeholder="Product name"
-					onChange={setName}
+					onChange={(e) => setName(e.target.value)}
 				/>
 			</div>
 			
