@@ -59,6 +59,39 @@ export default function CreateInvoicePage() {
 		fetchClient();
 	}, []);
 	
+	/**
+	 * Subtract product quantity 
+	 */
+	function subtractQuantity(selectedProduct) {
+		setProducts(products.map((product) => {
+			if(product._id !== selectedProduct._id) {
+				return product;
+			}
+			
+			// Cannot have negative quantities
+			if(product.quantity === 0) {
+				return product;
+			}
+			
+			product.quantity--;
+			return product;
+		}));
+	}
+	
+	/**
+	 * Add product quantity
+	 */
+	function addQuantity(selectedProduct) {
+		setProducts(products.map((product) => {
+			if(product._id !== selectedProduct._id) {
+				return product;
+			}
+			
+			product.quantity++;
+			return product;
+		}));
+	}
+	
 	return (
 		<>
 			<h2>Create invoice</h2>
@@ -86,6 +119,8 @@ export default function CreateInvoicePage() {
 								<ProductView
 									key={product.product}
 									product={product}
+									subtractQuantity={subtractQuantity}
+									addQuantity={addQuantity}
 								/>
 							</li>
 						);

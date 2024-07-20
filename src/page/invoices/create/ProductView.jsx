@@ -5,6 +5,8 @@ import React from 'react';
  */
 export default function ProductView({
 	product,
+	subtractQuantity,
+	addQuantity,
 }) {
 	return (
 		<>
@@ -14,14 +16,9 @@ export default function ProductView({
 			</div>
 			<div className="acciones">
 				<div className="contenedor-cantidad">
-					<i className="fas fa-minus"></i>
-					<input
-						type="text"
-						name="quantity"
-						placholder="Quantity"
-						defaultValue={product.quantity}
-					/>
-					<i className="fas fa-plus"></i>
+					<i className="fas fa-minus" onClick={() => subtractQuantity(product)}></i>
+					<p>{product.quantity}</p>
+					<i className="fas fa-plus" onClick={() => addQuantity(product)}></i>
 				</div>
 				<button className="btn btn-rojo">
 					<i className="fas fa-minus-circle"></i>
