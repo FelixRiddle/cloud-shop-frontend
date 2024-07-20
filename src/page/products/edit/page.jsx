@@ -34,7 +34,7 @@ export default function EditProductPage() {
 			withReactContent(Swal).fire({
 				icon: "error",
 				title: "Error",
-				text: "Empty response",
+				text: "Unknown error",
 				footer: '<a href="/help/error">Why do I have this issue?</a>'		  
 			});
 			
@@ -72,13 +72,27 @@ export default function EditProductPage() {
 	async function handlePutProduct(e) {
 		e.preventDefault();
 		
-		const response = await putProduct(new FormData(form.current));
+		const response = await putProduct(new FormData(form.current), previousProduct._id);
 		
 		if(!response) {
 			return;
 		}
 		
 		const successful = requestWasSuccessful(response);
+		const messages = response.messages;
+		if(messages) {
+			if(!successful) {
+				withReactContent(Swal).fire({
+					icon: "error",
+					title: "Error",
+					text: messages[0].message,
+					footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+				});
+				
+				return;
+			}
+		}
+		
 		if(successful) {
 			window.location.href = "/products";
 		}
@@ -145,7 +159,7 @@ export default function EditProductPage() {
 					<button
 						className="btn btn-azul"
 						onClick={handlePutProduct}
-					>Create product</button>
+					>Save changes</button>
 				</div>
 			</form>
 		</>

@@ -40,9 +40,16 @@ export default function ProductPage() {
 		}
 	}
 	
+	/**
+	 * Remove product
+	 */
+	async function removeProduct(productId) {
+		setProducts(products.filter((product) => product._id !== productId));
+	}
+	
 	useEffect(() => {
 		fetchProducts();
-	}, [products]);
+	}, []);
 	
 	if(!(products.length > 0)) {
 		return (
@@ -70,6 +77,7 @@ export default function ProductPage() {
 						<Product
 							key={product._id}
 							product={product}
+							removeProduct={removeProduct}
 						/>
 					);
 				})}

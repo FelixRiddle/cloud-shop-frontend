@@ -17,9 +17,16 @@ export default function ClientPage() {
 		}
 	}
 	
+	/**
+	 * Remove client
+	 */
+	async function removeClient(clientId) {
+		setClients(clients.filter((client) => client._id !== clientId));
+	}
+	
 	useEffect(() => {
 		updateClients();
-	}, [clients]);
+	}, []);
 	
 	if(!(clients.length > 0)) {
 		return (
@@ -42,7 +49,11 @@ export default function ClientPage() {
 			<ul className="listado-clientes">
 				{clients.map((client) => {
 					return (
-						<Client key={client._id} client={client} />
+						<Client
+							key={client._id}
+							client={client}
+							removeClient={removeClient}
+						/>
 					);
 				})}
 			</ul>

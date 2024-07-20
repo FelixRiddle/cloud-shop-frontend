@@ -7,7 +7,8 @@ import withReactContent from "sweetalert2-react-content";
  * Client
  */
 export default function Client({
-	client
+	client,
+	removeClient,
 }) {
 	/**
 	 * Handle delete client
@@ -23,6 +24,10 @@ export default function Client({
 			confirmButtonText: "Yes, delete it!"
 		}).then(async (result) => {
 			if (result.isConfirmed) {
+				// Frontend
+				removeClient(client._id);
+				
+				// Backend
 				await deleteClient(client._id);
 				withReactContent(Swal).fire({
 					title: "Deleted!",

@@ -9,7 +9,8 @@ import ProductImage from "../../components/product/ProductImage";
  * Product
  */
 export default function Product({
-	product
+	product,
+	removeProduct
 }) {
 	/**
 	 * Handle delete client
@@ -25,6 +26,10 @@ export default function Product({
 			confirmButtonText: "Yes, delete it!"
 		}).then(async (result) => {
 			if (result.isConfirmed) {
+				// Remove in the frontend
+				removeProduct(product._id);
+				
+				// Delete in the backend
 				await deleteProduct(product._id);
 				withReactContent(Swal).fire({
 					title: "Deleted!",
