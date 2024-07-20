@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import ProductView from './ProductView';
 import { useParams } from 'react-router-dom';
 import { getClient } from '../../../lib/requestTypes';
+import SearchProduct from './SearchProduct';
 
 /**
  * Create invoice page
@@ -12,6 +13,14 @@ import { getClient } from '../../../lib/requestTypes';
 export default function CreateInvoicePage() {
 	const params = useParams();
 	const [client, setClient] = useState({});
+	const [products, setProducts] = useState([]);
+	
+	/**
+	 * Append product
+	 */
+	function appendProduct(newProduct) {
+		setProducts([...products, newProduct]);
+	}
 	
 	/**
 	 * Fetch client
@@ -64,15 +73,11 @@ export default function CreateInvoicePage() {
 				<p>Phone number: {client.phoneNumber}</p>
 			</div>
 			
-			<form action="">
-				{/* Search */}
-				<legend>Search product</legend>
-				
-				<div className="campo">
-					<label htmlFor="products">Products</label>
-					<input type="text" name="products" id="products" placholder="Product name" />
-				</div>
-				
+			<SearchProduct
+				appendProduct={appendProduct}
+			/>
+			
+			<form>
 				{/* Products */}
 				<ul className="resumen">
 					<li>
