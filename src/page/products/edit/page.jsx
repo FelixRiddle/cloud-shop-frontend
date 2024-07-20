@@ -73,7 +73,6 @@ export default function EditProductPage() {
 		e.preventDefault();
 		
 		const response = await putProduct(new FormData(form.current), previousProduct._id);
-		
 		if(!response) {
 			return;
 		}

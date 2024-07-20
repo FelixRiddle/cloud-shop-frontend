@@ -47,10 +47,17 @@ export default function Client({
 				<p>Phone: {client.phoneNumber}</p>
 			</div>
 			<div className="acciones">
+				
 				<Link to={`/client/edit/${client._id}`} className="btn btn-azul">
 					<i className="fas fas-pen-alt"></i>
 					Edit client
 				</Link>
+				
+				<Link to={`/invoices/create/${client._id}`} className="btn btn-amarillo">
+					<i className="fas fas-plus"></i>
+					Create invoice
+				</Link>
+				
 				<button
 					className="btn btn-rojo btn-eliminar"
 					onClick={handleDeleteClient}

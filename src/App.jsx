@@ -6,9 +6,10 @@ import ClientPage from "./page/client/page";
 import CreateClientPage from "./page/client/create/page";
 import EditClient from "./page/client/edit/page";
 import ProductPage from "./page/products/page";
-import InvoicePage from "./page/invoice/page";
+import InvoicePage from "./page/invoices/page";
 import CreateProduct from "./page/products/create/page";
 import EditProductPage from "./page/products/edit/page";
+import CreateInvoicePage from "./page/invoices/create/page";
 
 /**
  * App
@@ -23,6 +24,7 @@ function App() {
 				
 				<main className="caja-contenido col-9">
 					<Routes>
+						{/* Clients */}
 						<Route exact path="/" element={<ClientPage />} />
 						<Route exact path="/client" element={<ClientPage />} />
 						<Route exact path="/client/create" element={<CreateClientPage />} />
@@ -32,6 +34,7 @@ function App() {
 							element={<EditClient />}
 						/>
 						
+						{/* Products */}
 						<Route exact path="/products" element={<ProductPage />} />
 						<Route
 							exact
@@ -44,7 +47,13 @@ function App() {
 							element={<EditProductPage />}
 						/>
 						
+						{/* Invoices */}
 						<Route exact path="/invoices" element={<InvoicePage />} />
+						<Route
+							exact
+							path={`/invoices/create/:id`}
+							element={<CreateInvoicePage />}
+						/>
 					</Routes>
 				</main>
 			</div>
