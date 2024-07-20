@@ -20,10 +20,12 @@ export default function CreateInvoicePage() {
 	 * Update total price
 	 */
 	function updateTotal() {
-		setTotal(0);
+		let newTotal = 0;
 		products.map((product) => {
-			setTotal(total + (product.price * product.quantity));
+			newTotal = (product.price * product.quantity);
 		});
+		
+		setTotal(newTotal);
 	}
 	
 	useEffect(() => {
@@ -35,6 +37,13 @@ export default function CreateInvoicePage() {
 	 */
 	function appendProduct(newProduct) {
 		setProducts([...products, newProduct]);
+	}
+	
+	/**
+	 * Remove product
+	 */
+	function removeProduct(selectedProduct) {
+		setProducts(products.filter((product) => product._id !== selectedProduct._id));
 	}
 	
 	/**
@@ -135,6 +144,7 @@ export default function CreateInvoicePage() {
 								product={product}
 								subtractQuantity={subtractQuantity}
 								addQuantity={addQuantity}
+								removeProduct={removeProduct}
 							/>
 						</li>
 					);

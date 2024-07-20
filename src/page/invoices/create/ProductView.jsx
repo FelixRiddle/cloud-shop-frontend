@@ -7,6 +7,7 @@ export default function ProductView({
 	product,
 	subtractQuantity,
 	addQuantity,
+	removeProduct
 }) {
 	return (
 		<>
@@ -20,7 +21,7 @@ export default function ProductView({
 					<p>{product.quantity}</p>
 					<i className="fas fa-plus" onClick={() => addQuantity(product)}></i>
 				</div>
-				<button className="btn btn-rojo">
+				<button className="btn btn-rojo" onClick={() => removeProduct(product)}>
 					<i className="fas fa-minus-circle"></i>
 					Delete product
 				</button>
