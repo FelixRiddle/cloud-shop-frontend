@@ -4,8 +4,9 @@ import Swal from 'sweetalert2';
 
 import ProductView from './ProductView';
 import { useParams } from 'react-router-dom';
-import { getClient } from '../../../lib/requestTypes';
+import { createInvoice, getClient } from '../../../lib/requestTypes';
 import SearchProduct from './SearchProduct';
+import { requestWasSuccessful } from '../../../lib/status';
 
 /**
  * Create invoice page
@@ -92,8 +93,8 @@ export default function CreateInvoicePage() {
 				return product;
 			}
 			
-			// Cannot have negative quantities
-			if(product.quantity === 0) {
+			// Cannot have less than one of quantity, otherwise just don't add the product
+			if(product.quantity === 1) {
 				return product;
 			}
 			
@@ -114,6 +115,52 @@ export default function CreateInvoicePage() {
 			product.quantity++;
 			return product;
 		}));
+	}
+	
+	/**
+	 * Create invoice
+	 */
+	async function handleCreateInvoice(e) {
+		e.preventDefault();
+		
+		const narrowProducts = products.map((product) => {
+			return {
+				product: product._id,
+				price: product.price,
+				quantity: product.quantity
+			};
+		});
+		
+		const invoice = {
+			client: client._id,
+			products: narrowProducts,
+		};
+		const response = await createInvoice(invoice);
+		if(!response) {
+			withReactContent(Swal).fire({
+				icon: "error",
+				title: "Error",
+				text: "Unknown error",
+				footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+			});
+			
+			return;
+		}
+		
+		const messages = response.messages;
+		const successful = requestWasSuccessful(response);
+		if(!successful) {
+			withReactContent(Swal).fire({
+				icon: "error",
+				title: "Error",
+				text: messages[0].message,
+				footer: '<a href="/help/error">Why do I have this issue?</a>'		  
+			});
+			
+			return;
+		}
+		
+		window.location.href = "/invoices";
 	}
 	
 	return (
@@ -154,11 +201,10 @@ export default function CreateInvoicePage() {
 			<p className="total">Total price <span>${total}</span></p>
 			
 			<div className="enviar">
-				<input
-					type="submit"
+				<button
 					className="btn btn-azul"
-					value="Create product"
-				/>
+					onClick={handleCreateInvoice}
+				>Create invoice</button>
 			</div>
 		</>
 	);
