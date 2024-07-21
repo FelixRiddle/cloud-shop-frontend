@@ -22,3 +22,5 @@ export const searchProduct = (name) => getRequest(`/product/search/${name}`);
 export const createInvoice = (invoice) => postRequest(`/invoice`, invoice);
 export const getInvoices = () => getRequest("/invoice");
 export const loginUser = (data) => postRequest("/auth/login", data);
+// Get authenticated user
+export const getUser = () => getRequest("/user/");
