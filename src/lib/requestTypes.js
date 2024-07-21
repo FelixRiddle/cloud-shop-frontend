@@ -20,3 +20,4 @@ export const putProduct = (data, id) => multipartPutRequest(`/product/${id}`, da
 export const getInvoice = (id) => getRequest(`/invoice/${id}`);
 export const searchProduct = (name) => getRequest(`/product/search/${name}`);
 export const createInvoice = (invoice) => postRequest(`/invoice`, invoice);
+export const getInvoices = () => getRequest("/invoice");
