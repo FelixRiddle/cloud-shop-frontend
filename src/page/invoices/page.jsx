@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getInvoices } from '../../lib/requestTypes';
 import { requestWasSuccessful } from '../../lib/status';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import Invoice from './Invoice';
+import userVanguard from '../../lib/protection/userVanguard';
+import { UserContext } from '../../components/context/UserContext';
 
 /**
  * Invoice page
  */
 export default function InvoicePage() {
 	const [invoices, setInvoices] = useState([]);
+	
+	// Validate user is logged in
+	const [user, setUser] = useContext(UserContext);
+	userVanguard(user);
 	
 	/**
 	 * Fetch invoices

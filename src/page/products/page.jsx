@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../lib/requestTypes';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import Product from './Product';
 import Spinner from '../../components/layout/Spinner';
+import userVanguard from '../../lib/protection/userVanguard';
+import { UserContext } from '../../components/context/UserContext';
 
 /**
  * Product page
  */
 export default function ProductPage() {
 	const [products, setProducts] = useState([]);
+	
+	// Validate user is logged in
+	const [user, setUser] = useContext(UserContext);
+	userVanguard(user);
 	
 	/**
 	 * Fetch products

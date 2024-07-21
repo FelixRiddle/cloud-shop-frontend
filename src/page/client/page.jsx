@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Client from './Client';
 import { Link } from 'react-router-dom';
 import { getClients } from '../../lib/requestTypes';
 import Spinner from '../../components/layout/Spinner';
+import { UserContext } from '../../components/context/UserContext';
+import userVanguard from '../../lib/protection/userVanguard';
 
 /**
  * Client page
  */
 export default function ClientPage() {
 	const [clients, setClients] = useState([]);
+	const [user, setUser] = useContext(UserContext);
 	
+	userVanguard(user);
+	
+	/**
+	 * Update clients
+	 */
 	const updateClients = async () => {
 		const data = await getClients();
 		if(data && data.clients) {

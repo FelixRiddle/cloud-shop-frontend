@@ -12,7 +12,7 @@ import EditProductPage from "./page/products/edit/page";
 import CreateInvoicePage from "./page/invoices/create/page";
 import LoginPage from "./page/auth/login/page";
 import { UserContext, UserProvider } from "./components/context/UserContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Register from "./page/auth/register/page";
 
 /**
@@ -20,45 +20,6 @@ import Register from "./page/auth/register/page";
  */
 function App() {
 	const [user, setUser] = useContext(UserContext);
-	
-	console.log(`User: `, user);
-	
-	// // Block access, everything here requires authentication
-	// if(!user._id) {
-	// 	return (
-	// 		<Router>
-	// 			<UserProvider value={[user, setUser]}>
-	// 				<Header />
-					
-	// 				<div className="grid contenedor contenido-principal">
-	// 					<Navigation />
-						
-	// 					<main className="caja-contenido col-9">
-	// 						<Routes>
-	// 							<Route
-	// 								exact
-	// 								path="/"
-	// 								element={<LoginPage />}
-	// 							/>
-								
-	// 							{/* Authentication */}
-	// 							<Route
-	// 								exact
-	// 								path="/auth/login"
-	// 								element={<LoginPage />}
-	// 							/>
-	// 							<Route
-	// 								exact
-	// 								path="/auth/register"
-	// 								element={<Register />}
-	// 							/>
-	// 						</Routes>
-	// 					</main>
-	// 				</div>
-	// 			</UserProvider>
-	// 		</Router>
-	// 	);
-	// }
 	
 	return (
 		<Router>
