@@ -10,6 +10,7 @@ import InvoicePage from "./page/invoices/page";
 import CreateProduct from "./page/products/create/page";
 import EditProductPage from "./page/products/edit/page";
 import CreateInvoicePage from "./page/invoices/create/page";
+import LoginPage from "./page/auth/login/page";
 
 /**
  * App
@@ -53,6 +54,13 @@ function App() {
 							exact
 							path={`/invoices/create/:id`}
 							element={<CreateInvoicePage />}
+						/>
+						
+						{/* Authentication */}
+						<Route
+							exact
+							path="/auth/login"
+							element={<LoginPage />}
 						/>
 					</Routes>
 				</main>
