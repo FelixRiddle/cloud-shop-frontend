@@ -1,14 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { loginUser } from '../../../lib/requestTypes';
 import { requestWasSuccessful } from '../../../lib/status';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
+import { UserContext } from '../../../components/context/UserContext';
 
 /**
  * Login page
  */
 export default function LoginPage() {
 	const loginForm = useRef(null);
+	const [_user, setUser] = useContext(UserContext);
 	
 	/**
 	 * Handle login
@@ -41,6 +43,7 @@ export default function LoginPage() {
 			return;
 		}
 		
+		setUser(response.user);
 		window.location.href = "/client";
 	}
 	

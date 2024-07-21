@@ -100,6 +100,18 @@ function App() {
 								path={`/invoices/create/:id`}
 								element={<CreateInvoicePage />}
 							/>
+							
+							{/* Authentication */}
+							<Route
+								exact
+								path="/auth/login"
+								element={<LoginPage />}
+							/>
+							<Route
+								exact
+								path="/auth/register"
+								element={<Register />}
+							/>
 						</Routes>
 					</main>
 				</div>
