@@ -13,6 +13,7 @@ export default function axiosClient() {
 	
 	const axiosClient = axios.create({
 		baseURL: url,
+		withCredentials: true,
 		headers,
 	});
 	

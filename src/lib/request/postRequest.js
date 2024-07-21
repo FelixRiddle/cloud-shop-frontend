@@ -15,12 +15,12 @@ export default async function postRequest(endpoint, formData) {
 		
 		return data;
 	} catch(err) {
+		console.error(err);
+		
 		if(err.response) {
 			const data = err.response.data;
 			return data;
 		}
-		
-		console.error(err);
 		
 		return undefined;
 	}
