@@ -24,3 +24,4 @@ export const getInvoices = () => getRequest("/invoice");
 export const loginUser = (data) => postRequest("/auth/login", data);
 // Get authenticated user
 export const getUser = () => getRequest("/user/");
+export const userLogout = () => getRequest("/user/logout");
