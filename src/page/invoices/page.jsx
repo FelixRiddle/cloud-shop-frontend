@@ -54,9 +54,11 @@ export default function InvoicePage() {
 			<ul className="listado-pedidos">
 				{invoices.map((invoice) => {
 					return (
-						<li className="pedido">
+						<li
+							className="pedido"
+							key={invoice._id}
+						>
 							<Invoice
-								key={invoice._id}
 								invoice={invoice}
 							/>
 						</li>
